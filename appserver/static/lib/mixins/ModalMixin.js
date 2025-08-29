@@ -14,6 +14,8 @@ const ModalModes = {
 };
 
 define([
+  "bootstrap.modal",
+  "bootstrap.tab",
   "css!../app/SMART/lib/DataTables/css/dataTables.bootstrap.css",
 ], function () {
   return {

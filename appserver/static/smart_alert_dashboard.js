@@ -28,6 +28,8 @@ require([
   "mixins/DataTablesMixin",
   "mixins/DataTablesSuppressMissingValueAlertMixin",
   "mixins/DataTablesFixWidthMixin",
+  "bootstrap.modal",
+  "bootstrap.tab",
 ], function (
   _,
   $,

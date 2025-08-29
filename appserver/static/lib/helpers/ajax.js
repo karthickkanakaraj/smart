@@ -18,9 +18,7 @@ define(["helpers/constants"], function ({
         contentType: isPostOrDeleteOperation ? "application/json" : undefined,
         async: false,
         error: function (jqXHR, textStatus, errorThrown) {
-          // don't alert on failed CrownConfig call
-          if (url.search("CrownConfig") < 0)
-             alert(`Error reaching:\n${this.url}\n\nSee console for details.`);
+          alert(`Error reaching:\n${this.url}\n\nSee console for details.`);
           console.error(`AJAX Error: ${errorThrown}`, this);
         },
         success: function (results) {
@@ -255,17 +253,8 @@ define(["helpers/constants"], function ({
     },
 
     queryCrownConfig: function (query) {
-      
-      // the CrownConfig lookup is now in the toolbox app
-      queryCollection = this.queryCollection("nobody", "toolbox", "CrownConfig", query);
-
-      if(queryCollection == undefined || queryCollection.length == 0)
-         // keep the CrownConfig lookup in the crownconf app for b/ward compatibility
-         queryCollection = this.queryCollection("nobody", "crownconf", "CrownConfig", query);
-
-      console.log(queryCollection);
-      return queryCollection;
-    },                                        
+      return this.queryCollection("nobody", "crownconf", "CrownConfig", query);
+    },
 
     queryCustomers: function (query, prop) {
       
