@@ -1,0 +1,142 @@
+<div tabindex="0" class="Scenario-modal modal hide">
+
+  <div class="modal-header">
+    <button type="button" class="close btn-dialog-close" data-dismiss="modal">x</button>
+    <strong name="dialog-title" id="dialog-title"></strong>
+  </div>
+
+  <div class="modal-body form form-horizontal modal-body-scrolling"
+    style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px; height: 440px !important;">
+
+    <div role="tabpanel">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist" style="background-color: #E1E6EB;">
+        <li id="tabLabel1" class="active">
+          <a href="#tab1" aria-controls="Tab1" role="tab" data-toggle="tab">Alert Parameters</a>
+        </li>
+        <li id="tabLabel2">
+          <a href="#tab2" aria-controls="Tab2" role="tab" data-toggle="tab">Scenario Parameters</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab1" style="padding-top: 10px; ">
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="Property">Property</label>
+            <div class="controls ">
+              <select id="PropertyDropdown"></select>
+            </div>
+          </div>
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="Reason">Reason</label>
+            <div class="controls ">
+              <select id="Reason"></select>
+              <div><strong><small id="ReasonError" class="form-text text-muted modal-error"
+                    style="color:#ff3300"></small></strong>
+              </div>
+            </div>
+          </div>
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="AreaAudited">iTrak 'Area Audited'</label>
+            <div class="controls ">
+              <select id="AreaAudited" style="width:300px;"></select>
+              <div><strong><small id="AreaAuditedError" class="form-text text-muted modal-error"
+                    style="color:#ff3300"></small></strong>
+              </div>
+            </div>
+          </div>
+          <div id="ModalCustomFields"></div>
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="PitList">Pit List</label>
+            <div class="controls ">
+              <select id="PitList"></select>
+              <div><strong><small id="PitListError" class="form-text text-muted modal-error" style="color:#ff3300">
+              </small></strong></div>
+            </div>
+          </div>
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="GameTypes">Game Types</label>
+            <div class="controls ">
+              <input type="text" name="GameTypes" id="GameTypes"
+                style="width: 300px; margin-top: 0px; margin-bottom: 0px !important;">
+              </input>
+
+              <div><strong><small id="GameTypePrompt" class="form-text text-muted"
+                    style="padding-top: 0px; padding-bottom: 0px !important;">
+                  </small></strong></div>
+
+              <div><strong><small id="GameTypeError" class="form-text text-muted modal-error" style="color:#ff3300">
+                  </small></strong></div>
+
+              <div><strong><small id="DuplicateError" class="form-text text-muted modal-error" style="color:#ff3300">
+                  </small></strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="tab2" style="padding-top: 10px;">
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="Comments">Comments</label>
+            <div class="controls ">
+              <textarea name="Comments" id="Comments" style="width: 300px; height: 75px;"></textarea>
+            </div>
+          </div>
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="Priority">Priority</label>
+            <div class="controls ">
+              <select id="Priority" style="width: 50px;"></select>
+            </div>
+          </div>
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="ExpiryDate">Expiry Date</label>
+            <div class="controls ">
+              <input type="text" name="ExpiryDate" id="ExpiryDate" style="width:120px;" placeholder="DD/MM/YYYY" />
+              <div><strong><small id="ExpiryDateError" class="form-text text-muted modal-error"
+                    style="color:#ff3300"></small></strong></div>
+            </div>
+          </div>
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="Active">Active</label>
+            <div class="controls ">
+              <select type="text" name="Active" id="Active" style="width:80px;"></select>
+            </div>
+          </div>
+          <div class="control-group shared-controls-controlgroup"
+            style="margin-top: 8px; margin-bottom: 8px !important;">
+            <label class="control-label" for="MonitoringType">Monitoring Type</label>
+            <div class="controls ">
+              <select id="MonitoringType" style="width:250px;"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" name="Scenario-key" id="Scenario-key"></input>
+  </div>
+
+  <div class="modal-footer">
+    <a href="#" id="ModalCancelButton" class="btn btn-dialog-cancel label_from_data pull-left" data-dismiss="modal"
+      style="display: inline;">Cancel</a>
+    <div class="loading pull-left"></div>
+    <a href="#" id="ModalSubmitButton" class="btn btn-primary pull-right save save_Scenario"
+      style="display: inline;">Save</a>
+  </div>
+
+</div>
+
+<a id="AddButton" class="btn btn-primary pull-left add_Scenario"
+  style="position: relative; top: 22px; display: block;z-index: 1000;"></a>
+
+<table id="table" class="table table-striped display" style="font-weight: normal !important;"></table>

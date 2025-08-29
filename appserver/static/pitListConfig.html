@@ -1,0 +1,39 @@
+<div tabindex="0" class="modal fade in hide">
+
+  <div class="modal-header">
+    <button type="button" class="close btn-dialog-close" data-dismiss="modal">x</button>
+    <strong id="dialog-title"></strong>
+  </div>
+
+  <div class="modal-body form-horizontal modal-body-scrolling" style="padding-left: 0px; padding-right: 0px;">
+    <div class="control-group shared-controls-controlgroup" style="margin-top: 8px; margin-bottom: 8px !important;">
+      <label class="control-label">Property</label>
+      <div class="controls">
+        <select id="PropertyDropdown"></select>
+      </div>
+    </div>
+    <div class="control-group shared-controls-controlgroup">
+      <label class="control-label">Pit List Code</label>
+      <div class="controls">
+        <input id="PitListCode" type="text" style="text-transform: uppercase;"></input>
+        <div><strong><small id="PitListCodeError" class="form-text text-muted modal-error"
+              style="color:#ff3300"></small></strong>
+        </div>
+      </div>
+    </div>
+    <div id="PitListSelect"></div>
+  </div>
+
+  <div class="modal-footer">
+    <a href="#" class="btn btn-dialog-cancel label_from_data pull-left  " data-dismiss="modal"
+      style="display: inline;">Cancel</a>
+    <div class="loading pull-left"></div>
+    <a href="#" id="ModalSubmitButton" class="btn btn-primary pull-right save save_PitList"
+      style="display: inline;">Save</a>
+  </div>
+</div>
+
+<a id="AddButton" class="btn btn-primary pull-left"
+  style="position: relative; top: 22px; display: block;z-index: 1000;"></a>
+
+<table id="table" class="table table-striped display" style="font-weight: normal !important;"></table>

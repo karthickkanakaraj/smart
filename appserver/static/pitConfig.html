@@ -1,0 +1,32 @@
+<div tabindex="0" class="Pit-modal modal fade in hide">
+
+  <div class="modal-header">
+    <button type="button" class="close btn-dialog-close" data-dismiss="modal">x</button>
+    <strong name="dialog-title" id="dialog-title"> </strong>
+  </div>
+
+  <div class="modal-body form-horizontal modal-body-scrolling" style="padding-left: 0px; padding-right: 0px;">
+    <div id="PitCode-controls" class="control-group shared-controls-controlgroup">
+      <label class="control-label" for="PitCode">Pit Code</label>
+      <div class="controls ">
+        <input type="text" name="PitCode" id="PitCode"></input>
+        <div><strong><small id="PitCodeError" class="form-text text-muted modal-error"
+              style="color:#ff3300"></small></strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <a href="#" class="btn btn-dialog-cancel label_from_data pull-left  " data-dismiss="modal"
+      style="display: inline;">Cancel</a>
+    <div class="loading pull-left"></div>
+    <a href="#" id="ModalSubmitButton" class="btn btn-primary pull-right save save_Pit"
+      style="display: inline;">Save</a>
+  </div>
+</div>
+
+
+<a id="AddButton" class="btn btn-primary pull-left"
+  style="position: relative; top: 22px; display: block;z-index: 1000;"></a>
+
+<table id="table" class="table table-striped display" style="font-weight: normal !important;"></table>
