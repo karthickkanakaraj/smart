@@ -1,0 +1,259 @@
+{
+    "modelName": "Customer_Swipes",
+    "displayName": "Customer Swipes",
+    "description": "",
+    "objectSummary": {
+        "Event-Based": 1,
+        "Transaction-Based": 0,
+        "Search-Based": 0
+    },
+    "objects": [
+        {
+            "objectName": "Customer_Swipes",
+            "displayName": "Customer_Swipes",
+            "parentName": "BaseEvent",
+            "comment": "",
+            "fields": [
+                {
+                    "fieldName": "EmployeeID",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "EmployeeID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "GameCode",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "GameCode",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "GameLocationCode",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "GameLocationCode",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "MaximumBet",
+                    "owner": "Customer_Swipes",
+                    "type": "number",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "MaximumBet",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "MinimumBet",
+                    "owner": "Customer_Swipes",
+                    "type": "number",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "MinimumBet",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "PitNo",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "PitNo",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "PropertyID",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "PropertyID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SignInCustomerID",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SignInCustomerID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SignOutCustomerID",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SignOutCustomerID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SubGameCode",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SubGameCode",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SupervisorID",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SupervisorID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SwipeAction",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SwipeAction",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SwipeType",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SwipeType",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "Timestamp",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "Timestamp",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "VendorProduct",
+                    "owner": "Customer_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "VendorProduct",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "_time",
+                    "owner": "BaseEvent",
+                    "type": "timestamp",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "_time",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "host",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "source",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "source",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "sourcetype",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "sourcetype",
+                    "comment": ""
+                }
+            ],
+            "calculations": [],
+            "constraints": [
+                {
+                    "search": "(`SMART-Indexes`) tag=cust_swipe",
+                    "owner": "Customer_Swipes"
+                }
+            ],
+            "lineage": "Customer_Swipes"
+        }
+    ],
+    "objectNameList": [
+        "Customer_Swipes"
+    ]
+}

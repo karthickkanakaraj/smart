@@ -1,0 +1,102 @@
+<form version="1.1" hideEdit="true">
+  <label>Crown Gateway Interface iTrak Alerts Status</label>
+  <description>*** PostResult = 200 is returned by Crown Gateway when the alert has been successfully received.</description>
+  <fieldset submitButton="false">
+    <input type="time" token="timepicker" searchWhenChanged="true">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+      <change>
+        <!-- timepicker values as unix timestamps -->
+        <condition>
+          <eval token="timepicker.earliest_epoch">if(isnum('earliest'), 'earliest', relative_time(now(), 'earliest') )</eval>
+          <eval token="timepicker.latest_epoch">if(isnum('latest'), 'latest', relative_time(now(), 'latest') )</eval>
+        </condition>
+      </change>
+    </input>
+    <input type="dropdown" token="property" searchWhenChanged="true">
+      <label>Source</label>
+      <choice value="1">Melbourne</choice>
+      <choice value="3">Sydney</choice>
+      <default>1</default>
+      <initialValue>1</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| inputlookup SMART-MEL-Alerts 
+| append [| inputlookup SMART-SYD-Alerts]
+
+| where (Status = "Posting" OR Status = "Posted") AND PropertyID = $property$
+
+| eval LastUpdated_epoch = strptime(LastUpdated,"%d/%m/%Y %H:%M:%S"),
+       LastUpdated_disp  = strftime(strptime(LastUpdated,"%d/%m/%Y %H:%M:%S"),
+                                    "%Y-%m-%d %H:%M:%S"),
+       AlertID = _key
+       
+| where
+    LastUpdated_epoch &gt;= "$timepicker.earliest_epoch$" AND
+    LastUpdated_epoch &lt;= "$timepicker.latest_epoch$"
+    
+| sort - LastUpdated_epoch
+
+| join max=0 type=outer AlertID
+   [ search index=*_smart_alert sourcetype=post_to_crown_gateway TriggeredBy=SMART  earliest=-30d
+     | eval AlertID  = UniqueID
+     | eval PostResult = ret_code
+     | eval CrownGatewayError = ret_text
+     | fields AlertID PostResult CrownGatewayError Payload]
+     
+| join max=0 type=outer AlertID
+   [ search index=*_smart_alert sourcetype=crown:iTrak:auditReference
+               earliest=-30d ```latest=+10h```
+     | eval AlertID  = correlationId 
+     | fields AlertID iTrakReference iTrakPostError errorDescription]
+     
+| sort - LastUpdated_disp    
+     
+| table 
+PropertyID
+LastUpdated_disp
+AlertTime
+AlertID
+ScenarioTypeCode
+CustomerID
+EmployeeID
+Status
+PostResult
+CrownGatewayError
+postTries
+iTrakReference
+iTrakPostError 
+errorDescription
+
+
+
+LocationCode
+Status
+iTrakReference
+LastUpdatedBy
+Payload
+
+| rename LastUpdated_disp as LastUpdated</query>
+          <earliest>$timepicker.earliest$</earliest>
+          <latest>$timepicker.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">100</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">false</option>
+      </table>
+    </panel>
+  </row>
+</form>

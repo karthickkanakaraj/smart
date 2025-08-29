@@ -1,0 +1,580 @@
+# Application-level permissions
+
+[]
+### EVENT TYPES
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+
+[app/launcher]
+modtime = 1589261039.736390100
+version = 8.0.2006
+
+[app/package/check_for_updates]
+# VIEWS: Dashboards & Reports
+modtime = 1589261039.746366700
+version = 8.0.2006
+
+[app/ui]
+modtime = 1589261039.719437500
+version = 8.0.2006
+
+[collections/SMART-AreaAuditeds]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+
+[collections/SMART-GameTypes]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+
+[collections/SMART-MEL-AlertAudits]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = none
+modtime = 1671669970.479882600
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[collections/SMART-MEL-Alerts]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = none
+modtime = 1675146456.390081200
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[collections/SMART-MEL-ScenarioInstanceAudits]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = none
+modtime = 1671512808.037342100
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[collections/SMART-MEL-ScenarioInstances]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = none
+modtime = 1674451308.250120400
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[collections/SMART-PitLists]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+
+[collections/SMART-Pits]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+
+[collections/SMART-Reasons]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+
+[collections/SMART-SYD-AlertAudits]
+access = read : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+modtime = 1671512662.481149800
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[collections/SMART-SYD-Alerts]
+access = read : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+modtime = 1671510454.988991300
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[collections/SMART-SYD-ScenarioInstanceAudits]
+access = read : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+modtime = 1671512873.318701300
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[collections/SMART-SYD-ScenarioInstances]
+access = read : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+modtime = 1671512882.075325600
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[collections/SMART-ScenarioTypes]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+modtime = 1674451293.525474400
+version = 8.2.6
+
+[datamodels/Employee_Swipes]
+modtime = 1672957661.199986500
+version = 8.2.6
+
+[eventtypes]
+### PROPS
+export = system
+
+[lookups]
+### MACROS
+export = system
+
+[macros/SMART-CreateAlertLookups%281%29]
+modtime = 1675130374.358963500
+version = 8.2.6
+
+[macros/SMART-CreateIGTAlertLookups%281%29]
+access = read : [ * ], write : [ admin ]
+export = none
+modtime = 1721005435.447062800
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[macros/SMART-CreateITRAKPayload%282%29]
+version = 9.0.5.1
+modtime = 1696476211.201174400
+
+[macros/SMART-CreateITRAKPayload-v2%282%29]
+access = read : [ admin, cpdev, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin, cpdev ]
+export = none
+modtime = 1675130243.968833800
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[macros/SMART-CreateITRAKRemark%286%29]
+modtime = 1674545738.543890200
+version = 8.2.6
+
+[macros/SMART-CustomerEmployeeSwipe-Alert%282%29]
+modtime = 1674452618.461091300
+version = 8.2.6
+
+[macros/SMART-CustomerEmployeeSwipe-Alert-IGTTM%282%29]
+access = read : [ * ], write : [ admin ]
+export = none
+modtime = 1721611651.802503300
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1  
+                                                     
+[macros/SMART-CustomerSwipe-Alert%282%29]
+modtime = 1674011163.457805100
+version = 8.2.6
+
+[macros/SMART-CustomerSwipe-Alert-IGTTM%282%29]
+access = read : [ * ], write : [ admin ]
+export = none
+modtime = 1721693287.964489400
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[macros/SMART-CustomerSwipes]
+modtime = 1689742144.474465800
+version = 9.0.3      
+                                         
+[macros/SMART-CustomerWinLoss-Alert%283%29]
+modtime = 1672791443.072364500
+version = 8.2.6
+
+[macros/SMART-DACOMJackpot-Alert%282%29]
+modtime = 1671603649.866837900
+version = 8.2.6
+
+[macros/SMART-EmployeeSwipe-Alert%282%29]
+modtime = 1674102213.995017900
+version = 8.2.6
+
+[macros/SMART-EmployeeSwipe-Alert-IGTTM%282%29]
+access = read : [ * ], write : [ admin ]
+export = none
+modtime = 1721611747.575297500
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[macros/SMART-EmployeeSwipes%281%29]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, syd_smart_alert_post, syd_smart_scenario_edit ]
+export = none
+modtime = 1678941762.092445000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[macros/SMART-GetEmployeeName%282%29]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+export = none
+modtime = 1671579446.174415500
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[macros/SMART-Indexes]
+### VIEWSTATES: even normal users should be able to create shared viewstates
+access = read : [ * ], write : [ admin ]
+export = system
+owner = sa_splunk_melb@crownresorts.com.au
+
+[macros/SMART-REPORT-ITRAK-POST%281%29]
+modtime = 1675130358.729148400
+version = 8.2.6
+
+[macros/SMART-TableNewEquipment-Alert%282%29]
+modtime = 1674100717.488654800
+version = 8.2.6
+
+[macros/SMART-TableSignificantAction-Alert%282%29]
+modtime = 1675137816.104035900
+version = 8.2.6
+
+[macros/SMART-TableWinLoss-Alert%283%29]
+modtime = 1672791301.451023500
+version = 8.2.6
+
+[models/Employee_Swipes]
+modtime = 1672957634.431026300
+version = 8.2.6
+
+[nav/default]
+modtime = 1674605682.322602000
+version = 8.2.6
+
+[props]
+### TRANSFORMS
+export = system
+
+[savedsearches/SMART-ALERT-MEL-CustomerEmployeeSwipe]
+export = none
+modtime = 1683175534.210883000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-CustomerSwipe]
+export = none
+modtime = 1683175534.470924000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-CustomerWinLossAuto]
+export = none
+modtime = 1683175534.494282000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-CustomerWinLossManual]
+export = none
+modtime = 1683175534.507047000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-DACOMJackpot]
+export = none
+modtime = 1683175534.480400000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-EmployeeSwipe]
+export = none
+modtime = 1683175534.809300000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-TableNewCard]
+export = none
+modtime = 1683175534.798101000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-TableNewEquipment]
+export = none
+modtime = 1683175535.030933000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-TableSignificantAction]
+export = none
+modtime = 1683175535.012651000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-TableWinLossAuto]
+export = none
+modtime = 1683175535.021909000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-MEL-TableWinLossManual]
+export = none
+modtime = 1683175535.001993000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-ALERT-SYD-CustomerEmployeeSwipe]
+export = none
+modtime = 1721018560.655151100
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[savedsearches/SMART-ALERT-SYD-CustomerEmployeeSwipe-IGTTM]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+export = none
+modtime = 1721109768.728723400
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[savedsearches/SMART-ALERT-SYD-CustomerSwipe]
+export = none
+modtime = 1721006420.869984900
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[savedsearches/SMART-ALERT-SYD-CustomerSwipe-IGTTM]
+access = read : [ * ], write : [ admin ]
+export = none
+modtime = 1721003997.798369600
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[savedsearches/SMART-ALERT-SYD-EmployeeSwipe]
+export = none
+modtime = 1721018548.015821300
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[savedsearches/SMART-ALERT-SYD-EmployeeSwipe-IGTTM]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+export = none
+modtime = 1721276444.646583800
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.5.1
+
+[savedsearches/SMART-REPORT-MEL-ITRAK-POST]
+export = none
+modtime = 1683174274.663443000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-REPORT-MEL-ITRAK-UPDATE]
+export = none
+modtime = 1683174274.683344000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-REPORT-SYD-ITRAK-POST]
+export = none
+modtime = 1683174274.674472000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[savedsearches/SMART-REPORT-SYD-ITRAK-UPDATE]
+export = none
+modtime = 1683174274.654698000
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.2208.4
+
+[transforms]
+### LOOKUPS
+export = system
+
+[transforms/SMART-MEL-AlertAudits]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797668.093454800
+
+[transforms/SMART-MEL-Alerts]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797685.686311600
+
+[transforms/SMART-MEL-ScenarioInstanceAudits]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797694.950848500
+
+[transforms/SMART-MEL-ScenarioInstances]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797701.501333600
+
+[transforms/SMART-AreaAuditeds]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797848.545514500
+
+[transforms/SMART-GameTypes]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797855.473096500
+
+[transforms/SMART-PitLists]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797861.982206100
+
+[transforms/SMART-Pits]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797870.132821900
+
+[transforms/SMART-Reasons]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+[transforms/SMART-SYD-AlertAudits]
+access = read : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797771.131787800
+
+[transforms/SMART-SYD-Alerts]
+access = read : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+                              
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797778.298671100
+
+[transforms/SMART-SYD-ScenarioInstanceAudits]
+access = read : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+                              
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797786.202877600
+
+[transforms/SMART-SYD-ScenarioInstances]
+access = read : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797792.697359200                              
+                              
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797876.986278000
+
+[transforms/SMART-ScenarioTypes]
+access = read : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+modtime = 1681797883.040001100
+
+[views/Scenario]
+modtime = 1589270366.854486700
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.0.2006
+
+[views/areaAuditedConfig]
+# VIEWS: Debug
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675129920.826449000
+version = 8.2.6
+
+[views/card_swipe_data_model]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, syd_smart_alert_post, syd_smart_scenario_edit ], write : [ admin ]
+modtime = 1675130569.508954200
+version = 8.2.6
+
+[views/custEmplScenarioConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675128652.273119900
+version = 8.2.6
+
+[views/custWinLossScenarioConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ admin ]
+modtime = 1675128688.252171000
+version = 8.2.6
+
+[views/customerScenarioConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675128586.235303700
+version = 8.2.6
+
+[views/dacomJackpotScenarioConfig]
+# VIEWS: Config
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ admin ]
+modtime = 1675128996.088436700
+version = 8.2.6
+
+[views/employeeScenarioConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675128619.660062100
+version = 8.2.6
+
+[views/employee_swipe_data_model]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+export = none
+owner = sa_splunk_melb@crownresorts.com.au
+version = 9.0.3
+modtime = 1689738222.743468300
+
+[views/gameTypeConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675129016.892434400
+version = 8.2.6
+
+[views/itrak_post_status]
+access = read : [ admin, grp_sqa, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, smart_qa, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675129996.002418900
+version = 8.2.6
+
+[views/newCardScenarioConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ admin ]
+modtime = 1675128765.183783800
+version = 8.2.6
+
+[views/pitConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675129956.615541900
+version = 8.2.6
+
+[views/pitListConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675129035.070476300
+version = 8.2.6
+
+[views/reasonConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675129067.876532600
+version = 8.2.6
+
+[views/scenarioTypeConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675129937.690473600
+version = 8.2.6
+
+[views/scenario_maintenance_audit_report]
+# VIEWS: Scenarios
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675128540.777216800
+version = 8.2.6
+
+[views/sigActionScenarioConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ admin ]
+modtime = 1675128786.761886700
+version = 8.2.6
+
+[views/smart_alert_dashboard]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+export = none
+modtime = 1675128497.518763500
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[views/smart_alert_report]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+modtime = 1675379482.543193200
+version = 8.2.6
+
+[views/smart_scheduled_search_performance]
+export = none
+modtime = 1675130063.868965900
+owner = sa_splunk_melb@crownresorts.com.au
+version = 8.2.6
+
+[views/tableWinLossScenarioConfig]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ admin ]
+modtime = 1675128742.625258100
+version = 8.2.6
+
+[viewstates]
+access = read : [ * ], write : [ * ]
+export = system

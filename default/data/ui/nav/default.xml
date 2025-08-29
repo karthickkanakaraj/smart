@@ -1,0 +1,36 @@
+<nav search_view="search" color="#cc6600">
+   <view name="smart_alert_dashboard" default='true' />
+   <collection label="SMART Reports">
+      <view name="smart_alert_report" />
+      <view name="scenario_maintenance_audit_report" />
+   </collection>
+   <collection label="Scenario Maintenance">
+      <view name="customerScenarioConfig" />
+      <view name="employeeScenarioConfig" />
+      <view name="custEmplScenarioConfig" />
+      <divider/>
+      <view name="custWinLossScenarioConfig" />
+      <view name="tableWinLossScenarioConfig" />
+      <view name="sigActionScenarioConfig" />
+      <view name="dacomJackpotScenarioConfig" />      
+   </collection>
+   <collection label="SMART Config">
+      <view name="gameTypeConfig" />
+      <view name="pitListConfig" />
+      <view name="reasonConfig" />
+      <view name="areaAuditedConfig" />
+   </collection>
+   <collection label="Debug">
+      <view name="scenarioTypeConfig" />
+      <view name="pitConfig" />
+      <view name="itrak_post_status" />
+      <view name="smart_scheduled_search_performance" />
+      <view name="card_swipe_data_model" />
+      <view name="employee_swipe_data_model" />
+      <divider/>
+      <view name="search" />
+      <view name="alerts" />
+      <view name="reports" />
+      <view name="dashboards" />
+   </collection>
+</nav>

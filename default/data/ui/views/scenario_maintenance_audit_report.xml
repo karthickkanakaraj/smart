@@ -1,0 +1,297 @@
+<form version="1.1" hideEdit="true">
+  <label>Scenario Maintenance Audit Report</label>
+  <search>
+    <done>
+      <set token="display.earliest">$result._earliest$</set>
+      <set token="display.latest">$result._latest$</set>
+    </done>
+    <query>
+| makeresults
+
+| eval format = "%a %d %b %Y  %H:%M:%S"
+
+| eval _earliest = if("$timepicker.earliest$"="0",
+    strftime(0,format),
+    strftime(relative_time(now(),"$timepicker.earliest$"),format) )
+  
+| eval _earliest = if(isnull(_earliest),
+    strftime("$timepicker.earliest$",format),
+    _earliest )
+  
+| eval _latest = if("$timepicker.latest$"="now" OR "$timepicker.latest$"="",
+    strftime(now(),format),
+    strftime(relative_time(now(),"$timepicker.latest$"),format) )
+
+| eval _latest = if(isnull(_latest),
+    strftime("$timepicker.latest$",format),
+    _latest )
+
+| table _earliest _latest
+        </query>
+  </search>
+  <search>
+    <done>
+      <set token="scenarioType.name">$result.ScenarioTypeName$</set>
+    </done>
+    <query>
+          | inputlookup SMART-ScenarioTypes
+              where ScenarioTypeCode="$scenarioType.code$"
+          | fields ScenarioTypeName
+        </query>
+  </search>
+  <!-- Initial Token Values -->
+  <init>
+    <set token="display.earliest">-</set>
+    <set token="display.latest">-</set>
+  </init>
+  <!-- Settings -->
+  <!-- Debug View of Tokens -->
+  <!-- Stylesheet -->
+  <!-- Calculate Display Values for Timepicker -->
+  <!-- Set scenarioType.name -->
+  <!-- Scenario Audits / Search Results -->
+  <!-- Scenario Detail Drilldown -->
+  <fieldset submitButton="false">
+    <input type="dropdown" token="property.code" searchWhenChanged="true">
+      <label>Property</label>
+      <change>
+        <condition value="MEL">
+          <set token="property.name">Melbourne</set>
+        </condition>
+        <condition value="SYD">
+          <set token="property.name">Sydney</set>
+        </condition>
+      </change>
+      <fieldForLabel>propertyDisplayName</fieldForLabel>
+      <fieldForValue>propertyList</fieldForValue>
+      <search>
+        <query>| rest splunk_server=local /services/authentication/users
+| fields title, roles
+| search title="$env:user$"
+| eval access=
+        if(roles="mel_smart_user" AND roles="syd_smart_user", "all", 
+        if(roles="mel_smart_user" AND roles!="syd_smart_user", "melb", 
+        if(roles="syd_smart_user" AND roles!="mel_smart_user", "syd", 
+        "none")))
+| eval propertyList=if(access="all", "MEL,SYD", if(access="melb", "MEL", if(access="syd", "SYD", "none")))
+| makemv delim="," propertyList
+| mvexpand propertyList
+| eval propertyDisplayName=if(propertyList="MEL", "Melbourne", if(propertyList="SYD", "Sydney", "none"))</query>
+        <earliest>-15m</earliest>
+        <latest>now</latest>
+        <done>
+          <condition match="'job.resultCount' &gt; 0">
+            <set token="propertyDefault">$result.propertyList$</set>
+          </condition>
+        </done>
+      </search>
+      <default>$propertyDefault$</default>
+      <initialValue>$propertyDefault$</initialValue>
+    </input>
+    <input type="time" token="timepicker">
+      <label>Time Range</label>
+      <default>
+        <earliest>-7d@h</earliest>
+        <latest>now</latest>
+      </default>
+      <change>
+        <!-- timepicker values as unix timestamps -->
+        <condition>
+          <eval token="timepicker.earliest_epoch">if(isnum('earliest'), 'earliest', relative_time(now(), 'earliest') )</eval>
+          <eval token="timepicker.latest_epoch">if(isnum('latest'), 'latest', relative_time(now(), 'latest') )</eval>
+        </condition>
+      </change>
+    </input>
+    <input type="dropdown" token="scenarioType.code" id="scenario_multiselect">
+      <label>Scenario Types</label>
+      <fieldForLabel>ScenarioTypeName</fieldForLabel>
+      <fieldForValue>scenarioList</fieldForValue>
+      <default>$scenarioDefault$</default>
+      <initialValue>$scenarioDefault$</initialValue>
+      <search>
+        <query>| rest splunk_server=local /services/authentication/users
+| fields title, roles
+| search title="$env:user$"
+| eval access=
+        if((roles="admin" OR roles="cpdev" OR roles="smart_qa"), "all", 
+        if(roles="mel_smart_user" AND roles="syd_smart_user", "all", 
+        if(roles="mel_smart_user" AND roles!="syd_smart_user", "melb", 
+        if(roles="syd_smart_user" AND roles!="mel_smart_user", "syd", 
+        "none"))))
+| eval PropertyCode="$property.code$"
+| eval scenarioList=if(access="all" AND PropertyCode="MEL", "CustomerCardSwipe,EmployeeCardSwipe,CustomerAndEmployeeCardSwipe,CustomerWinLoss,TableWinLoss,SignificantAction,DACOMJackpot", if(access="all" AND PropertyCode="SYD", "CustomerCardSwipe,EmployeeCardSwipe,CustomerAndEmployeeCardSwipe", if(access="melb", "CustomerCardSwipe,EmployeeCardSwipe,CustomerAndEmployeeCardSwipe,CustomerWinLoss,TableWinLoss,SignificantAction,DACOMJackpot", if(access="syd", "CustomerCardSwipe,EmployeeCardSwipe,CustomerAndEmployeeCardSwipe", "none"))))
+| makemv delim="," scenarioList
+| mvexpand scenarioList
+| lookup SMART-ScenarioTypes ScenarioTypeCode as scenarioList OUTPUT ScenarioTypeName</query>
+        <earliest>-15m</earliest>
+        <latest>now</latest>
+        <done>
+          <condition match="'job.resultCount' &gt; 0">
+            <set token="scenarioDefault">$result.scenarioList$</set>
+          </condition>
+        </done>
+      </search>
+    </input>
+    <input type="multiselect" token="actions" id="actions_multiselect">
+      <label>Actions</label>
+      <choice value="Created">Created</choice>
+      <choice value="Updated">Updated</choice>
+      <choice value="Deleted">Deleted</choice>
+      <delimiter>,</delimiter>
+      <default>Created,Updated,Deleted</default>
+    </input>
+    <input type="text" token="search_token">
+      <label>Search</label>
+      <change>
+        <eval token="search_token">if(isnull(search_token) OR len(search_token) == 0, "*", upper(search_token))</eval>
+      </change>
+      <default></default>
+      <prefix>*</prefix>
+      <suffix>*</suffix>
+    </input>
+  </fieldset>
+  <row depends="$noshow$">
+    <panel>
+      <html>
+        <h3>Tokens Debugger</h3>
+        <pre>
+property: {
+  code: $property.code$
+  name: $property.name$
+}
+timepicker: {
+  earliest: $timepicker.earliest$
+  latest: $timepicker.latest$
+  earliest_epoch: $timepicker.earliest_epoch$
+  latest_epoch: $timepicker.latest_epoch$
+}
+scenarioType: {
+  code: $scenarioType.code$
+  name: $scenarioType.name$
+}
+actions: $actions$
+search_token: $search_token$
+
+scenario: {
+  _key: $scenario._key$
+}
+</pre>
+      </html>
+    </panel>
+  </row>
+  <row depends="$noshow$">
+    <panel>
+      <html>
+      <style>
+        #actions_multiselect div[data-component="splunk-core:/splunkjs/mvc/components/MultiDropdown"],
+        #actions_multiselect div[data-view="splunkjs/mvc/multidropdownview"] {
+          width: 265px !important;
+          margin-right: auto !important;
+        }
+
+        .fieldset .input { width:auto !important; }
+
+        /* hides the "Hide Filters" toggle, rather than fix it */
+        .hide-global-filters { visibility: hidden !important; }
+
+        /* Remove real-time column and panel */
+        div[data-test="real-time-column"],
+        div[data-test-panel-id="realTime"] {
+          display: none;
+        }
+      </style>
+    </html>
+    </panel>
+  </row>
+  <row depends="$property.name$,$scenarioType.name$,$display.earliest$,$display.latest$">
+    <panel>
+      <html>
+        <h1>Audit Log for $property.name$ Scenarios ($scenarioType.name$) </h1>
+        <h2>From $display.earliest$ to $display.latest$</h2>
+      </html>
+      <table>
+        <search>
+          <done>
+            <unset token="scenario._key"></unset>
+          </done>
+          <query>| inputlookup SMART-$property.code$-ScenarioInstanceAudits
+
+| eval
+    LastUpdated_epoch = strptime(LastUpdated, "%d/%m/%Y %H:%M:%S"),
+    LastUpdated = strftime(LastUpdated_epoch, "%Y-%m-%d %H:%M:%S")
+
+| dedup ScenarioKey sortby - LastUpdated
+
+| where
+    LastUpdated_epoch &gt;= "$timepicker.earliest_epoch$" AND
+    LastUpdated_epoch &lt;= "$timepicker.latest_epoch$" AND
+    match(FieldValues, "ScenarioTypeCode=$scenarioType.code$") AND
+    match("$actions$", Action)
+
+| rex mode=sed field=FieldValues "s/PropertyID=.,//g"
+| rex mode=sed field=FieldValues "s/ScenarioTypeCode=$scenarioType.code$,//g"
+| rex mode=sed field=FieldValues "s/_/ /g"
+
+| rex mode=sed field=FieldValues "s/,[a-zA-Z]+=undefined//g"
+| rex mode=sed field=FieldValues "s/,[a-zA-Z]+=,/,/g"
+
+| eval _key = ScenarioKey,
+       "Latest Values" = split(FieldValues,",")
+
+| search
+    LastUpdated     = $search_token|s$ OR
+    LastUpdatedBy   = $search_token|s$ OR
+    "Latest Values" = $search_token|s$
+
+| sort - LastUpdated_epoch</query>
+          <earliest>$timepicker.earliest$</earliest>
+          <latest>$timepicker.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">row</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+        <fields>["Action","Latest Values","LastUpdated","LastUpdatedBy","_key"]</fields>
+        <drilldown>
+          <set token="scenario._key">$row._key$</set>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+  <row depends="$scenario._key$">
+    <panel>
+      <html>
+        <h2 style="font-weight: bold">Scenario Audit Details</h2>
+      </html>
+      <table>
+        <search>
+          <query>| inputlookup SMART-$property.code$-ScenarioInstanceAudits
+    where ScenarioKey = $scenario._key$
+
+| eval
+    LastUpdated_epoch = strptime(LastUpdated, "%d/%m/%Y %H:%M:%S"),
+    LastUpdated = strftime(LastUpdated_epoch, "%Y-%m-%d %H:%M:%S")
+    
+| rex mode=sed field=FieldValues "s/PropertyID=.,//g"
+| rex mode=sed field=FieldValues "s/ScenarioTypeCode=$scenarioType.code$,//g"
+| rex mode=sed field=FieldValues "s/_/ /g"
+
+| rex mode=sed field=FieldValues "s/,[a-zA-Z]+=undefined//g"
+| rex mode=sed field=FieldValues "s/,[a-zA-Z]+=,/,/g"    
+
+| eval "Field Values" = split(FieldValues,",")
+| sort - LastUpdated_epoch</query>
+          <earliest>$earliest$</earliest>
+          <latest>$latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <fields>["Action","LastUpdated","LastUpdatedBy","Field Values"]</fields>
+      </table>
+    </panel>
+  </row>
+</form>

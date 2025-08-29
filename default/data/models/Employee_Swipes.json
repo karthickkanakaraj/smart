@@ -1,0 +1,259 @@
+{
+    "modelName": "Employee_Swipes",
+    "displayName": "Employee_Swipes",
+    "description": "",
+    "objectSummary": {
+        "Event-Based": 1,
+        "Transaction-Based": 0,
+        "Search-Based": 0
+    },
+    "objects": [
+        {
+            "objectName": "Employee_Swipes",
+            "displayName": "Employee_Swipes",
+            "parentName": "BaseEvent",
+            "comment": "",
+            "fields": [
+                {
+                    "fieldName": "GameCode",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "GameCode",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "GameLocationCode",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "GameLocationCode",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "PitNo",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "PitNo",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "PropertyID",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "PropertyID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SignInEmployeeID",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SignInEmployeeID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SignInEmployeeRole",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SignInEmployeeRole",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SignOutEmployeeID",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SignOutEmployeeID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SignOutEmployeeRole",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SignOutEmployeeRole",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SubGameCode",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SubGameCode",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SwipeAction",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SwipeAction",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SwipeType",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SwipeType",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "Timestamp",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "Timestamp",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "VendorProduct",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "VendorProduct",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SignInSuperID",
+                    "owner": "Employee_Swipes",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SignInSuperID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "SignOutSuperID",
+                    "owner": "Employee_Swipes",
+                    "type": "number",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "SignOutSuperID",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "_time",
+                    "owner": "BaseEvent",
+                    "type": "timestamp",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "_time",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "host",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "source",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "source",
+                    "comment": ""
+                },
+                {
+                    "fieldName": "sourcetype",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "fieldSearch": "",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "sourcetype",
+                    "comment": ""
+                }
+            ],
+            "calculations": [],
+            "constraints": [
+                {
+                    "search": "(`SMART-Indexes`) tag=empl_swipe",
+                    "owner": "Employee_Swipes"
+                }
+            ],
+            "lineage": "Employee_Swipes"
+        }
+    ],
+    "objectNameList": [
+        "Employee_Swipes"
+    ]
+}

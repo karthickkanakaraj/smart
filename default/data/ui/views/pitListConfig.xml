@@ -1,0 +1,10 @@
+<dashboard version="1.1" hideEdit="true" script="pitListConfig.js" isDashboard="false">
+    <label>Pit List Maintenance</label>
+    <row>
+        <html id="element1">
+            <div id="PitLists">
+                Loading
+            </div>
+        </html>
+    </row>
+</dashboard>

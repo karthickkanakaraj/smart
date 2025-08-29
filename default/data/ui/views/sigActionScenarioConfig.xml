@@ -1,0 +1,10 @@
+<dashboard version="1.1" hideEdit="true" script="sigActionScenConfig.js" isDashboard="false">
+    <label>Significant Action Scenario Maintenance</label>
+    <row>
+        <html id="element1">
+            <div id="Scenarios">
+                Loading
+            </div>
+        </html>
+    </row>
+</dashboard>

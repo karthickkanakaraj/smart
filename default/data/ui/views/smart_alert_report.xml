@@ -1,0 +1,319 @@
+<form version="1.1" hideEdit="true">
+  <label>SMART Alert Report</label>
+  <search>
+    <done>
+      <set token="display.earliest">$result._earliest$</set>
+      <set token="display.latest">$result._latest$</set>
+    </done>
+    <query>
+| makeresults
+| eval format = "%a %d %b %Y  %H:%M:%S"
+| eval _earliest = if("$timepicker.earliest$"="0",
+  strftime(0,format),
+  strftime(relative_time(now(),"$timepicker.earliest$"),format) )
+    
+| eval _earliest = if(isnull(_earliest),
+  strftime("$timepicker.earliest$",format),
+  _earliest )
+    
+| eval _latest = if("$timepicker.latest$"="now" OR "$timepicker.latest$"="",
+  strftime(now(),format),
+  strftime(relative_time(now(),"$timepicker.latest$"),format) )
+
+| eval _latest = if(isnull(_latest),
+  strftime("$timepicker.latest$",format),
+  _latest )
+  
+| table _earliest _latest
+        </query>
+    <earliest>$timepicker.earliest$</earliest>
+    <latest>$timepicker.latest$</latest>
+  </search>
+  <!-- Initial Token Values -->
+  <init>
+    <set token="display.earliest">-</set>
+    <set token="display.latest">-</set>
+  </init>
+  <!-- Settings -->
+  <!-- Debug View of Tokens -->
+  <!-- Stylesheet -->
+  <!-- Alerts / Search Results -->
+  <!-- Audit / Alert Drilldown -->
+  <fieldset submitButton="false">
+    <input type="dropdown" token="property.code" searchWhenChanged="true">
+      <label>Property</label>
+      <change>
+        <condition value="MEL">
+          <set token="property.name">Melbourne</set>
+        </condition>
+        <condition value="SYD">
+          <set token="property.name">Sydney</set>
+        </condition>
+      </change>
+      <fieldForLabel>propertyDisplayName</fieldForLabel>
+      <fieldForValue>propertyList</fieldForValue>
+      <search>
+        <query>| rest splunk_server=local /services/authentication/users
+| fields title, roles
+| search title="$env:user$"
+| eval access=
+        if(roles="mel_smart_user" AND roles="syd_smart_user", "all", 
+        if(roles="mel_smart_user" AND roles!="syd_smart_user", "melb", 
+        if(roles="syd_smart_user" AND roles!="mel_smart_user", "syd", 
+        "none")))
+| eval propertyList=if(access="all", "MEL,SYD", if(access="melb", "MEL", if(access="syd", "SYD", "none")))
+| makemv delim="," propertyList
+| mvexpand propertyList
+| eval propertyDisplayName=if(propertyList="MEL", "Melbourne", if(propertyList="SYD", "Sydney", "none"))</query>
+        <earliest>-15m</earliest>
+        <latest>now</latest>
+        <done>
+          <condition match="'job.resultCount' &gt; 0">
+            <set token="propertyDefault">$result.propertyList$</set>
+          </condition>
+        </done>
+      </search>
+      <default>$propertyDefault$</default>
+      <initialValue>$propertyDefault$</initialValue>
+    </input>
+    <input type="time" token="timepicker">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="multiselect" token="scenarioType.code" id="scenario_multiselect">
+      <label>Scenario Types</label>
+      <fieldForLabel>ScenarioTypeName</fieldForLabel>
+      <fieldForValue>scenarioList</fieldForValue>
+      <search>
+        <query>| rest splunk_server=local /services/authentication/users
+| fields title, roles
+| search title="$env:user$"
+| eval access=
+        if((roles="admin" OR roles="cpdev" OR roles="smart_qa"), "all", 
+        if(roles="mel_smart_user" AND roles="syd_smart_user", "all", 
+        if(roles="mel_smart_user" AND roles!="syd_smart_user", "melb", 
+        if(roles="syd_smart_user" AND roles!="mel_smart_user", "syd", 
+        "none"))))
+| eval PropertyCode="$property.code$"
+| eval scenarioList=if(access="all" AND PropertyCode="MEL", "CustomerCardSwipe,EmployeeCardSwipe,CustomerAndEmployeeCardSwipe,CustomerWinLoss,TableWinLoss,SignificantAction,NewEquipment,DACOMJackpot", if(access="all" AND PropertyCode="SYD", "CustomerCardSwipe,EmployeeCardSwipe,CustomerAndEmployeeCardSwipe", if(access="melb", "CustomerCardSwipe,EmployeeCardSwipe,CustomerAndEmployeeCardSwipe,CustomerWinLoss,TableWinLoss,SignificantAction,NewEquipment,DACOMJackpot", if(access="syd", "CustomerCardSwipe,EmployeeCardSwipe,CustomerAndEmployeeCardSwipe", "none"))))
+| makemv delim="," scenarioList
+| mvexpand scenarioList
+| lookup SMART-ScenarioTypes ScenarioTypeCode as scenarioList OUTPUT ScenarioTypeName</query>
+        <earliest>-15m</earliest>
+        <latest>now</latest>
+        <done>
+          <condition match="'job.resultCount' &gt; 0">
+            <set token="scenarioDefault">$result.scenarioList$</set>
+          </condition>
+        </done>
+      </search>
+      <delimiter> OR </delimiter>
+      <default>CustomerCardSwipe</default>
+      <valuePrefix>ScenarioTypeCode="</valuePrefix>
+      <valueSuffix>"</valueSuffix>
+    </input>
+    <input type="multiselect" token="statuses" id="status_multiselect">
+      <label>Alert Statuses</label>
+      <choice value="New">New</choice>
+      <choice value="Posted">Posted</choice>
+      <choice value="Posting">Posting</choice>
+      <choice value="Deleted">Deleted</choice>
+      <delimiter> OR </delimiter>
+      <default>New</default>
+      <valuePrefix>Status="</valuePrefix>
+      <valueSuffix>"</valueSuffix>
+    </input>
+    <input type="text" token="search_token">
+      <label>Search</label>
+      <change>
+        <eval token="search_token">if(isnull(search_token) OR len(search_token) == 0, "*", upper(search_token))</eval>
+      </change>
+      <default></default>
+      <prefix>*</prefix>
+      <suffix>*</suffix>
+    </input>
+  </fieldset>
+  <row depends="$noshow$">
+    <panel>
+      <html>
+        <h3>Tokens Debugger</h3>
+        <pre>
+property: {
+  code: $property.code$
+  name: $property.name$
+}
+timepicker: {
+  earliest: $timepicker.earliest$
+  latest: $timepicker.latest$
+  earliest_epoch_disp: $display.earliest$
+  latest_epoch_disp: $display.latest$
+  }
+scenarioType: {
+  code: $scenarioType.code$
+}
+statuses: $statuses$
+search_token: $search_token$
+alert: {
+  _key: $alert._key$
+}
+</pre>
+      </html>
+    </panel>
+  </row>
+  <row depends="$noshow$">
+    <panel>
+      <html>
+      <style>
+        #status_multiselect div[data-component="splunk-core:/splunkjs/mvc/components/MultiDropdown"] {
+          width: 275px !important;
+        }
+        #status_multiselect div[data-view="splunkjs/mvc/multidropdownview"] {
+          width: 275px !important;
+          margin-right: auto !important;
+        }
+        .fieldset .input { width:auto !important; }
+        /* hides the "Hide Filters" toggle, rather than fix it */
+        .hide-global-filters { visibility: hidden !important; }
+        /* Remove real-time column and panel */
+        div[data-test="real-time-column"],
+        div[data-test-panel-id="realTime"] {
+          display: none;
+        }
+        #scenario_multiselect div[data-component="splunk-core:/splunkjs/mvc/components/MultiDropdown"] {
+          width: 275px !important;
+        }
+        #scenario_multiselect div[data-view="splunkjs/mvc/multidropdownview"] {
+          width: 275px !important;
+          margin-right: auto !important;
+        }
+        .fieldset .input { width:auto !important; }
+        /* hides the "Hide Filters" toggle, rather than fix it */
+        .hide-global-filters { visibility: hidden !important; }
+        
+        /* Remove real-time column and panel */
+        div[data-test="real-time-column"],
+        div[data-test-panel-id="realTime"] {
+          display: none;
+        }
+
+      </style>
+    </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <h1>Alerts from $display.earliest$ to $display.latest$</h1>
+      </html>
+      <table>
+        <search>
+          <done>
+            <unset token="alert._key"></unset>
+          </done>
+          <query>| inputlookup SMART-$property.code$-Alerts where $scenarioType.code$ AND $statuses$
+
+| eval AlertTime_epoch    = strptime(AlertTime, "%Y-%m-%d %H:%M:%S"),
+       AlertLastUpdated   = LastUpdated,
+       AlertLastUpdatedBy = LastUpdatedBy
+
+| addinfo
+
+| where AlertTime_epoch &gt;= info_min_time AND
+        AlertTime_epoch &lt;= info_max_time
+
+| eval "Alert Time" = AlertTime,
+        "Customer ID" = CustomerID,
+        "Employee ID" = EmployeeID,
+        "Location" = LocationCode
+
+| lookup SMART-ScenarioTypes ScenarioTypeCode OUTPUT ScenarioTypeName
+| eval "Scenario Type" = ScenarioTypeName
+
+| eval patron = CustomerID
+| eval patron=if(patron="", null(), patron) 
+| lookup $property.code$-patronLookup patron OUTPUT FirstName LastName
+| fillnull value="" FirstName LastName 
+| eval "Customer Name" = FirstName + " " + LastName
+
+| eval EmployeeID=if(EmployeeID="", null(),EmployeeID) 
+`SMART-GetEmployeeName("$property.code$",EmployeeID)`
+| fillnull value="" FirstName LastName 
+| eval "Employee Name" = FirstName + " " + LastName
+
+| lookup SMART-$property.code$-AlertAudits AlertKey as _key OUTPUT LastUpdated LastUpdatedBy
+
+| eval LastUpdated   = mvindex(LastUpdated, -1),
+       LastUpdatedBy = mvindex(LastUpdatedBy, -1),
+       LastUpdated   = if(isnull(LastUpdated),AlertLastUpdated,LastUpdated),
+       LastUpdatedBy = if(isnull(LastUpdatedBy),AlertLastUpdatedBy,LastUpdatedBy)
+
+| search "Customer ID"   = $search_token|s$ OR 
+         "Customer Name" = $search_token|s$ OR 
+         "Employee ID"   = $search_token|s$ OR
+         "Employee Name" = $search_token|s$ OR
+         Description     = $search_token|s$ OR
+         Reason          = $search_token|s$ OR
+         Location        = $search_token|s$ OR
+         Comments        = $search_token|s$ OR
+         iTrakReference  = $search_token|s$ OR
+         LastUpdatedBy   = $search_token|s$
+ 
+| table "Alert Time"
+        "Scenario Type"
+        "Customer ID"
+        "Customer Name"
+        "Employee ID"
+        "Employee Name"
+        Description
+        Reason
+        Location
+        Comments
+        Status
+        iTrakReference
+        LastUpdated
+        LastUpdatedBy
+        _key</query>
+          <earliest>$timepicker.earliest$</earliest>
+          <latest>$timepicker.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">row</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+        <drilldown>
+          <set token="alert._key">$row._key$</set>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+  <row depends="$alert._key$">
+    <panel>
+      <html>
+        <h2 style="font-weight: bold">Audit Log for Alert #$alert._key$ ($property.name$)</h2>
+      </html>
+      <table>
+        <search>
+          <query>
+| inputlookup SMART-$property.code$-AlertAudits
+  where AlertKey = $alert._key$
+| eval
+  LastUpdated_epoch = strptime(LastUpdated, "%d/%m/%Y %H:%M:%S"),
+  LastUpdated = strftime(LastUpdated_epoch, "%Y-%m-%d %H:%M:%S")
+| table Status iTrakReference LastUpdated LastUpdatedBy
+| sort -LastUpdated
+          </query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>
