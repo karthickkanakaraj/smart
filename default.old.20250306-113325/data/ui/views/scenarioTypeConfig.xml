@@ -1,0 +1,10 @@
+<dashboard version="1.1" hideEdit="true" script="scenarioTypeConfig.js" isDashboard="false">
+    <label>Scenario Type Maintenance</label>
+    <row>
+        <html id="element1">
+            <div id="ScenarioTypes">
+                Loading
+            </div>
+        </html>
+    </row>
+</dashboard>

@@ -1,0 +1,138 @@
+[macros/SMART-TableNewCard-Alert%282%29]
+version = 9.0.5.1
+modtime = 1708896932.683869100
+
+[savedsearches/SMART-ALERT-MEL-TableNewCard]
+version = 9.0.5.1
+modtime = 1721089542.926121300
+
+[macros/SMART-CreateITRAKPayload%282%29]
+version = 9.0.5.1
+modtime = 1721709131.161395200
+
+[transforms/SMART-MEL-Alerts]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ], write : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user ]
+export = system
+owner = nobody
+version = 9.0.5.1
+modtime = 1706760084.435269800
+
+[views/smart_alert_report]
+version = 9.0.5.1
+modtime = 1708033668.362669800
+
+[app/install/install_source_checksum]
+version = 9.0.5.1
+modtime = 1741221209.844545900
+
+[views/employee_swipe_data_model]
+version = 9.0.5.1
+modtime = 1713403151.693947600
+
+[views/card_swipe_data_model]
+version = 9.0.5.1
+modtime = 1713403086.394180600
+
+[views/itrak_post_status]
+access = read : [ admin, grp_sqa, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, smart_qa, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+export = none
+owner = nobody
+version = 9.0.5.1
+modtime = 1718323095.344354800
+
+[macros/SMART-EmployeeSwipe-Alert-IGTTM%282%29]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = cd358996@crownresorts.com.au
+version = 9.0.5.1
+modtime = 1721611747.575297500
+
+[savedsearches/SMART-ALERT-SYD-EmployeeSwipe-IGTTM]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+export = none
+owner = cd358996@crownresorts.com.au
+version = 9.0.5.1
+modtime = 1721276444.646583800
+
+[savedsearches/SMART-ALERT-SYD-EmployeeSwipe]
+version = 9.0.5.1
+modtime = 1721018548.015821300
+
+[savedsearches/SMART-ALERT-MEL-EmployeeSwipe]
+version = 9.0.5.1
+modtime = 1718843487.201880800
+
+[savedsearches/SMART-ALERT-SYD-CustomerSwipe]
+version = 9.0.5.1
+modtime = 1721006420.869984900
+
+[savedsearches/SMART-ALERT-SYD-CustomerEmployeeSwipe]
+version = 9.0.5.1
+modtime = 1721018560.655151100
+
+[savedsearches/SMART-ALERT-SYD-CustomerEmployeeSwipe-IGTTM]
+access = read : [ admin, mel_smart_alert_post, mel_smart_scenario_edit, mel_smart_user, syd_smart_alert_post, syd_smart_scenario_edit, syd_smart_user ], write : [ admin ]
+export = none
+owner = cd358996@crownresorts.com.au
+version = 9.0.5.1
+modtime = 1721109768.728723400
+
+[macros/SMART-CustomerEmployeeSwipe-Alert-IGTTM%282%29]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = cd358996@crownresorts.com.au
+version = 9.0.5.1
+modtime = 1721611651.802503300
+
+[macros/SMART-CreateIGTAlertLookups%281%29]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = cd358996@crownresorts.com.au
+version = 9.0.5.1
+modtime = 1721005435.447062800
+
+[savedsearches/SMART-ALERT-SYD-CustomerSwipe-IGTTM]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = cd358996@crownresorts.com.au
+version = 9.0.5.1
+modtime = 1721003997.798369600
+
+[macros/SMART-CustomerSwipe-Alert-IGTTM%282%29]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = cd358996@crownresorts.com.au
+version = 9.0.5.1
+modtime = 1721693287.964489400
+
+[macros/SMART-CreateITRAKRemark%286%29]
+version = 9.0.5.1
+modtime = 1721871038.877557800
+
+[savedsearches/SMART-REPORT-MEL-ITRAK-POST]
+version = 9.0.5.1
+modtime = 1732148783.646931000
+
+[savedsearches/SMART-REPORT-MEL-ITRAK-UPDATE]
+version = 9.0.5.1
+modtime = 1732148799.473825100
+
+[savedsearches/SMART-REPORT-SYD-ITRAK-POST]
+version = 9.0.5.1
+modtime = 1732148789.386891000
+
+[savedsearches/SMART-REPORT-SYD-ITRAK-UPDATE]
+version = 9.0.5.1
+modtime = 1732148804.308799900
+
+[savedsearches/SMART-ALERT-MEL-TableNewEquipment]
+version = 9.0.5.1
+modtime = 1723180943.540370000
+
+[savedsearches/SMART-ALERT-MEL-CustomerWinLossAuto]
+version = 9.0.5.1
+modtime = 1723180988.888017400
+
+[app/install/state]
+version = 9.0.5.1
+modtime = 1732148747.061103900

@@ -1,0 +1,10 @@
+<dashboard version="1.1" hideEdit="true" script="smart_alert_dashboard.js" isDashboard="false">
+    <label>SMART Alert Dashboard</label>
+    <row>
+        <html id="element1">
+            <div id="Alerts">
+                Loading
+            </div>
+        </html>
+    </row>
+</dashboard>

@@ -1,0 +1,77 @@
+<form version="1.1">
+  <label>Employee Swipe Data Model</label>
+  <fieldset submitButton="false">
+    <input type="time" token="field1">
+      <label>Time Range</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="text" token="table" searchWhenChanged="true">
+      <label>GameLocationCode</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="text" token="empId" searchWhenChanged="true">
+      <label>Employee ID</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="source" searchWhenChanged="true">
+      <label>Source</label>
+      <choice value="Atom">Atom</choice>
+      <choice value="IGT">IGT Table Manager</choice>
+      <default>Atom</default>
+      <initialValue>Atom</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>| `SMART-EmployeeSwipes`
+          
+| where GameLocationCode = upper("$table$") OR "$table$" = "*"
+| where (SignInEmployeeID = "$empId$" OR SignOutEmployeeID = "$empId$" OR
+         SignInSuperID = "$empId$" OR SignOutSuperID = "$empId$" OR 
+         "$empId$" ="*")
+
+| eval Source = split(VendorProduct," "),
+       Source = mvindex(Source,0)
+       
+| where Source = "$source$"       
+
+| sort -_time + SwipeAction
+
+| table _time,
+Source,
+SwipeAction,
+SwipeType,
+SignInEmployeeRole,
+SignInEmployeeID,
+SignInSuperID,
+SignOutEmployeeRole,
+SignOutEmployeeID,
+SignOutSuperID,
+GameCode,
+LocationCode,
+GameLocationCode,
+PropertyID,
+Timestamp</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">20</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="percentagesRow">false</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+        <option name="totalsRow">false</option>
+        <option name="wrap">true</option>
+      </table>
+    </panel>
+  </row>
+</form>
